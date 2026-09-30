@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARVEST & FEAST | Épicerie Gastronomique de Thanksgiving</title>
+    <meta name="description" content="Découvrez notre sélection exclusive pour célébrer Thanksgiving : volailles fermières d'exception, tarte à la courge artisanale, vins de récolte et arts de la table.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Background Animated Particles Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Ambient Glowing Shapes -->
+    <div class="ambient-shape-1"></div>
+    <div class="ambient-shape-2"></div>
+    <div class="ambient-shape-3"></div>
+
+    <div class="app-container">
+
+        <!-- HEADER & NAVBAR -->
+        <header class="navbar">
+            <div class="nav-content">
+                <a href="#" class="brand-logo">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span>HARVEST</span> & FEAST
+                </a>
+
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#hero" class="nav-link">Accueil</a></li>
+                        <li><a href="#catalogue" class="nav-link">Festin d'Automne</a></li>
+                        <li><a href="#calculateur" class="nav-link">Calculateur de Festin</a></li>
+                        <li><a href="#maison" class="nav-link">Notre Maison</a></li>
+                    </ul>
+                </nav>
+
+                <div class="nav-actions">
+                    <div class="search-box-desktop" style="position: relative;">
+                        <input type="text" id="search-input" class="promo-input" placeholder="Rechercher..." style="padding: 0.5rem 1rem 0.5rem 2.2rem; width: 160px; font-size: 0.85rem;">
+                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="rgba(245,235,230,0.5)" fill="none" stroke-width="2" style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+
+                    <button class="icon-btn" onclick="openCartDrawer()" aria-label="Voir le panier">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        <span class="badge-count cart-count-badge">0</span>
+                    </button>
+
+                    <button class="icon-btn mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu mobile">
+                        <svg viewBox="0 0 24 24" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- MOBILE MENU OVERLAY -->
+        <div id="mobile-menu-drawer" class="mobile-menu-drawer">
+            <div class="mobile-menu-header">
+                <a href="#" class="brand-logo" style="font-size: 1.2rem;">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span>HARVEST</span> & FEAST
+                </a>
+                <button class="modal-close-btn" style="position: static;" onclick="toggleMobileMenu()">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="#hero" class="mobile-nav-link" onclick="toggleMobileMenu()">Accueil</a></li>
+                <li><a href="#catalogue" class="mobile-nav-link" onclick="toggleMobileMenu()">Festin d'Automne</a></li>
+                <li><a href="#calculateur" class="mobile-nav-link" onclick="toggleMobileMenu()">Calculateur de Festin</a></li>
+                <li><a href="#maison" class="mobile-nav-link" onclick="toggleMobileMenu()">Notre Maison</a></li>
+            </ul>
+            <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid rgba(217,119,54,0.2);">
+                <button class="btn-primary" onclick="toggleMobileMenu(); openCartDrawer();" style="width: 100%; justify-content: center;">
+                    Voir mon Panier (<span class="cart-count-badge">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-grid">
+                <div class="hero-text-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        Édition Limitee Thanksgiving 2026
+                    </div>
+                    <h1 class="hero-title" id="hero-title-anim">
+                        <span class="title-line" data-text="L'Art de Recevoir pour le">L'Art de Recevoir pour le</span> <span class="accent-text title-line" data-text="Festin de Thanksgiving">Festin de Thanksgiving</span>
+                    </h1>
+                    <p class="hero-description">
+                        Élevez votre table avec notre collection gastronomique d'exception : dindes fermières élevées en plein air, farces aux truffes, tartes artisanales et nectars de récolte.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#catalogue" class="btn-primary">
+                            Explorer le Menu
+                            <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </a>
+                        <a href="#calculateur" class="btn-secondary">
+                            Calculer mon Festin
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div>
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Bio & Fermier</span>
+                        </div>
+                        <div>
+                            <span class="stat-number">2 450+</span>
+                            <span class="stat-label">Tables Servies</span>
+                        </div>
+                        <div>
+                            <span class="stat-number">4.9 / 5</span>
+                            <span class="stat-label">Avis Gastronomie</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Showcase Card -->
+                <div class="hero-visual">
+                    <div class="hero-card-3d">
+                        <div class="hero-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=1200&auto=format&fit=crop" alt="Grand Festin de Thanksgiving">
+                            <div class="hero-image-overlay"></div>
+                        </div>
+                        <div class="hero-card-content">
+                            <span class="hero-card-tag">Coffret Incontournable</span>
+                            <h3 class="hero-card-title">Le Grand Banquet d'Automne</h3>
+                            <p style="font-size: 0.85rem; color: rgba(245,235,230,0.7); margin-bottom: 1rem;">Dinde fermière rôtie aux herbes, farce aux truffes et tarte à la courge pour 8 convives.</p>
+                            <div class="hero-card-footer">
+                                <span class="hero-card-price">199.00 €</span>
+                                <button class="btn-primary" onclick="addFeastBundleToCart()" style="padding: 0.75rem 1.4rem; font-size: 0.85rem;">
+                                    Réserver le Kit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COUNTDOWN TIMER -->
+        <section id="countdown" class="countdown-section">
+            <div class="countdown-inner">
+                <p class="countdown-eyebrow reveal from-bottom">Le Grand Festin approche</p>
+                <h2 class="countdown-headline reveal from-bottom">Thanksgiving 2026 — 26 Novembre</h2>
+                <div class="countdown-grid reveal scale-in" id="countdown-grid">
+                    <div class="countdown-block">
+                        <div class="countdown-digits" id="cd-days">00</div>
+                        <div class="countdown-label">Jours</div>
+                    </div>
+                    <div class="countdown-sep">:</div>
+                    <div class="countdown-block">
+                        <div class="countdown-digits" id="cd-hours">00</div>
+                        <div class="countdown-label">Heures</div>
+                    </div>
+                    <div class="countdown-sep">:</div>
+                    <div class="countdown-block">
+                        <div class="countdown-digits" id="cd-minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-sep">:</div>
+                    <div class="countdown-block">
+                        <div class="countdown-digits" id="cd-seconds">00</div>
+                        <div class="countdown-label">Secondes</div>
+                    </div>
+                </div>
+                <div id="countdown-done" class="countdown-done-msg" style="display:none;">
+                    Joyeux Thanksgiving ! La fête est arrivée.
+                </div>
+                <a href="#catalogue" class="btn-primary reveal from-bottom" style="margin-top: 2.5rem; display: inline-flex;">
+                    Commander avant le Grand Jour
+                    <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- PRODUCTS CATALOG (FESTIN D'AUTOMNE) -->
+        <section id="catalogue" class="section-padding">
+            <div class="section-header reveal from-bottom">
+                <span class="section-subtitle">Sélection Gastronomique</span>
+                <h2 class="section-title">Notre Menu de Thanksgiving</h2>
+                <p style="color: rgba(245,235,230,0.7); margin-top: 0.75rem;">Explorez nos cartes de menus complets préparées par nos chefs et nos mets d'exception à la carte.</p>
+            </div>
+
+            <!-- VISUAL MENUS SHOWCASE CARDS -->
+            <div class="reveal-group" style="max-width: 1400px; margin: 0 auto 4rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <!-- Menu Card 1 -->
+                <div class="product-card reveal from-bottom" style="border-color: rgba(217,119,54,0.4);">
+                    <div class="product-image-container" style="height: 220px;">
+                        <img src="https://images.unsplash.com/photo-1574672280600-4accfa5b6f98?q=80&w=800&auto=format&fit=crop" alt="Menu Traditionnel">
+                        <span class="product-badge">Menu Tradition</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Menu Complet • 6 à 8 Convives</span>
+                        <h3 class="product-title">Le Banquet Traditionnel d'Automne</h3>
+                        <p style="font-size: 0.85rem; color: rgba(245,235,230,0.7); margin-bottom: 1rem; line-height: 1.5;">Dinde Fermière Rôtie aux Herbes, Farce aux Champignons et Tarte Artisanale à la Courge Butternut.</p>
+                        <div class="product-bottom">
+                            <span class="price-current">189.00 €</span>
+                            <button class="btn-primary" onclick="addToCart('prod-1'); addToCart('prod-3'); openCartDrawer();" style="padding: 0.65rem 1.1rem; font-size: 0.85rem;">
+                                Réserver ce Menu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Card 2 -->
+                <div class="product-card reveal from-bottom" style="border-color: rgba(217,119,54,0.4);">
+                    <div class="product-image-container" style="height: 220px;">
+                        <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?q=80&w=800&auto=format&fit=crop" alt="Menu Gourmand">
+                        <span class="product-badge">Menu Gourmand</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Menu Complet • 8 à 10 Convives</span>
+                        <h3 class="product-title">Le Banquet Ibérique & Bourbon</h3>
+                        <p style="font-size: 0.85rem; color: rgba(245,235,230,0.7); margin-bottom: 1rem; line-height: 1.5;">Jambon Ibérique Glacé à l'Érable, Pecan Pie Traditionnelle et Coffret Harvest Spiced Cider.</p>
+                        <div class="product-bottom">
+                            <span class="price-current">175.00 €</span>
+                            <button class="btn-primary" onclick="addToCart('prod-2'); addToCart('prod-4'); addToCart('prod-5'); openCartDrawer();" style="padding: 0.65rem 1.1rem; font-size: 0.85rem;">
+                                Réserver ce Menu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Card 3 -->
+                <div class="product-card reveal from-bottom" style="border-color: rgba(217,119,54,0.4);">
+                    <div class="product-image-container" style="height: 220px;">
+                        <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=800&auto=format&fit=crop" alt="Menu Prestige">
+                        <span class="product-badge">Menu Prestige</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Menu d'Exception • 10 à 12 Convives</span>
+                        <h3 class="product-title">Le Grand Festin des Maîtres Chefs</h3>
+                        <p style="font-size: 0.85rem; color: rgba(245,235,230,0.7); margin-bottom: 1rem; line-height: 1.5;">Dinde Fermière, Farce Truffée, Chutney, Duo de Tartes et Service de Table Céramique complet.</p>
+                        <div class="product-bottom">
+                            <span class="price-current">395.00 €</span>
+                            <button class="btn-primary" onclick="addToCart('prod-1'); addToCart('prod-6'); addToCart('prod-7'); openCartDrawer();" style="padding: 0.65rem 1.1rem; font-size: 0.85rem;">
+                                Réserver ce Menu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--c3);">Ou Composez Votre Carte À la Pièce</h3>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filters-bar">
+                <button class="filter-btn active" data-filter="all">Tous les Mets</button>
+                <button class="filter-btn" data-filter="volailles">Volailles & Rôtis</button>
+                <button class="filter-btn" data-filter="desserts">Tartes & Desserts</button>
+                <button class="filter-btn" data-filter="boissons">Caves & Boissons</button>
+                <button class="filter-btn" data-filter="tableware">Arts de la Table</button>
+            </div>
+
+            <!-- Products Grid Container -->
+            <div id="products-grid" class="products-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- THANKSGIVING CUSTOM FEAST CALCULATOR WIDGET -->
+        <section id="calculateur" class="calculator-section section-padding">
+            <div class="section-header reveal from-bottom">
+                <span class="section-subtitle">Planification Sur Mesure</span>
+                <h2 class="section-title">Composez Votre Festin de Thanksgiving</h2>
+                <p style="color: rgba(245,235,230,0.7); margin-top: 0.75rem;">Ajustez le nombre d'invités et sélectionnez vos plats et vins préférés pour un menu 100% personnalisé.</p>
+            </div>
+
+            <div class="calculator-card reveal scale-in">
+                <div class="calculator-grid">
+                    <div>
+                        <!-- Dynamic Guest Count Slider -->
+                        <div class="guest-slider-container">
+                            <div class="guest-slider-label">
+                                <span>Nombre d'invités attendus</span>
+                                <span id="guest-count-display" class="guest-count-display">8 Convives</span>
+                            </div>
+                            <input type="range" id="guest-slider" min="2" max="24" value="8" step="1" oninput="updateCustomCalculator()" onchange="updateCustomCalculator()">
+                        </div>
+
+                        <!-- Custom Choices Options -->
+                        <div class="custom-choices-wrapper" style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem;">
+                            
+                            <!-- Choice 1: Main Dish / Roast -->
+                            <div class="custom-choice-group">
+                                <label class="form-label" style="font-weight: 700; color: var(--c2);">1. Pièce Maîtresse (Volaille & Rôti)</label>
+                                <select id="calc-main-dish" class="form-input" onchange="updateCustomCalculator()">
+                                    <option value="prod-1" data-extra="0">Dinde Fermière Rôtie aux Herbes (Recommandé)</option>
+                                    <option value="prod-2" data-extra="0">Jambon Ibérique Glacé au Sirop d'Érable</option>
+                                    <option value="prod-1-truffle" data-extra="25">Dinde Bio Farcie aux Truffes Noires d'Hiver (+25 €)</option>
+                                    <option value="roast-veggie" data-extra="-15">Rôti Végétal Butternut & Châtaignes (-15 €)</option>
+                                </select>
+                            </div>
+
+                            <!-- Choice 2: Dessert / Pie -->
+                            <div class="custom-choice-group">
+                                <label class="form-label" style="font-weight: 700; color: var(--c2);">2. Dessert Traditionnel</label>
+                                <select id="calc-dessert-dish" class="form-input" onchange="updateCustomCalculator()">
+                                    <option value="prod-3" data-extra="0">Tarte Artisanale à la Courge Butternut</option>
+                                    <option value="prod-4" data-extra="4">Pecan Pie au Bourbon & Noix Grillées (+4 €)</option>
+                                    <option value="duo-pies" data-extra="20">Duo de Tartes (Butternut + Pecan Pie) (+20 €)</option>
+                                </select>
+                            </div>
+
+                            <!-- Choice 3: Wine & Cider -->
+                            <div class="custom-choice-group">
+                                <label class="form-label" style="font-weight: 700; color: var(--c2);">3. Cave & Boissons d'Automne</label>
+                                <select id="calc-beverage-choice" class="form-input" onchange="updateCustomCalculator()">
+                                    <option value="prod-5" data-extra="0">Coffret Harvest Spiced Cider & Vin (Standard)</option>
+                                    <option value="vin-prestige" data-extra="18">Sélection Millésimée Vins de Récolte 2024 (+18 €)</option>
+                                    <option value="cidre-bio" data-extra="-10">Cidre Brut Fermier Pur Jus (-10 €)</option>
+                                </select>
+                            </div>
+
+                            <!-- Choice 4: Extras Checkboxes -->
+                            <div class="custom-choice-group">
+                                <label class="form-label" style="font-weight: 700; color: var(--c2); margin-bottom: 0.5rem; display: block;">4. Accompagnements & Décoration</label>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
+                                    <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer;">
+                                        <input type="checkbox" id="calc-extra-stuffing" checked onchange="updateCustomCalculator()" style="accent-color: var(--c2); width: 18px; height: 18px;">
+                                        Farce Truffée aux Champignons (+29.00 €)
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer;">
+                                        <input type="checkbox" id="calc-extra-chutney" checked onchange="updateCustomCalculator()" style="accent-color: var(--c2); width: 18px; height: 18px;">
+                                        Chutney d'Airelles & Figues (+16.50 €)
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer;">
+                                        <input type="checkbox" id="calc-extra-tableware" onchange="updateCustomCalculator()" style="accent-color: var(--c2); width: 18px; height: 18px;">
+                                        Service de Table Céramique 12 pièces (+185.00 €)
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Calculator Summary Results -->
+                    <div class="calculator-results">
+                        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--c3); margin-bottom: 1rem; border-bottom: 1px solid rgba(217,119,54,0.3); padding-bottom: 0.5rem;">Résumé de Votre Festin</h3>
+
+                        <div class="calc-res-item">
+                            <span>Portion Volaille</span>
+                            <span id="calc-turkey-weight" class="calc-res-val">6.0 kg</span>
+                        </div>
+                        <div class="calc-res-item">
+                            <span>Nombre de Tartes</span>
+                            <span id="calc-pie-count" class="calc-res-val">2 Tartes</span>
+                        </div>
+                        <div class="calc-res-item">
+                            <span>Boissons de Récolte</span>
+                            <span id="calc-wine-bottles" class="calc-res-val">3 Bouteilles</span>
+                        </div>
+                        <div class="calc-res-item" style="margin-top: 1rem; padding-top: 1rem; border-top: 2px dashed rgba(217,119,54,0.3);">
+                            <span style="font-weight: 700;">Prix Total Personnalisé</span>
+                            <span id="calc-total-est" class="calc-res-val" style="font-size: 1.8rem;">228.00 €</span>
+                        </div>
+
+                        <button class="btn-primary" onclick="addCustomFeastBundleToCart()" style="width: 100%; margin-top: 1.5rem; justify-content: center;">
+                            Ajouter Mon Festin Personnalisé au Panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CRAFTSMANSHIP & VALUES -->
+        <section id="maison" class="section-padding" style="background: rgba(var(--c1-rgb), 0.6); border-top: 1px solid rgba(var(--c2-rgb), 0.15);">
+            <div class="section-header reveal from-bottom">
+                <span class="section-subtitle">Engagements d'Excellence</span>
+                <h2 class="section-title">Le Savoir-Faire Harvest & Feast</h2>
+            </div>
+
+            <div class="reveal-group" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem;">
+                <div class="craft-card reveal from-bottom">
+                    <div class="craft-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="var(--c2)" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--c3); margin-bottom: 0.75rem;">100% Bio & Élevage Fermier</h3>
+                    <p style="font-size: 0.9rem; color: rgba(245,235,230,0.7); line-height: 1.6;">Volailles nourries aux céréales nobles et élevées en plein air au cœur du Périgord.</p>
+                </div>
+
+                <div class="craft-card reveal from-bottom">
+                    <div class="craft-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="var(--c2)" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--c3); margin-bottom: 0.75rem;">Livraison Chronofresh 24H</h3>
+                    <p style="font-size: 0.9rem; color: rgba(245,235,230,0.7); line-height: 1.6;">Respect absolu de la chaîne du froid dans un emballage thermique éco-responsable.</p>
+                </div>
+
+                <div class="craft-card reveal from-bottom">
+                    <div class="craft-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="var(--c2)" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--c3); margin-bottom: 0.75rem;">Prêt à Passer au Four</h3>
+                    <p style="font-size: 0.9rem; color: rgba(245,235,230,0.7); line-height: 1.6;">Tous nos mets sont livrés avec leur thermomètre de cuisson et instructions de chefs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMO OFFER BANNER -->
+        <section class="section-padding" style="position: relative; overflow: hidden;">
+            <div class="promo-banner-card reveal scale-in" style="max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, rgba(217,119,54,0.2), rgba(13,9,7,0.9)); border: 1px solid var(--c2); border-radius: var(--radius-lg); padding: 3.5rem 2rem; text-align: center;">
+                <span style="color: var(--c2); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem;">Offre Spéciale de Récolte</span>
+                <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--c3); margin: 0.75rem 0 1rem 0;">10% de Réduction sur Votre Première Commande</h2>
+                <p style="color: rgba(245,235,230,0.8); max-width: 600px; margin: 0 auto 2rem auto;">Utilisez le code promo exclusif <strong class="promo-code-badge" data-copy-promo="THANKSGIVING10" title="Cliquer pour copier le code" style="color: var(--c2); letter-spacing: 1px;">THANKSGIVING10</strong> lors de votre validation de panier.</p>
+                <button class="btn-primary" onclick="openCartDrawer()">
+                    En Profiter Maintenant
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-grid reveal-group">
+                <div class="reveal from-bottom">
+                    <a href="#" class="brand-logo" style="margin-bottom: 1.25rem; display: inline-flex;">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span>HARVEST</span> & FEAST
+                    </a>
+                    <p style="color: rgba(245,235,230,0.6); font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+                        Maison d'épicerie fine dédiée à l'art de célébrer les fêtes d'automne et les grands banquets de famille.
+                    </p>
+                </div>
+
+                <div class="reveal from-bottom">
+                    <h4 class="footer-col-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero" class="footer-link">Accueil</a></li>
+                        <li><a href="#catalogue" class="footer-link">Festin d'Automne</a></li>
+                        <li><a href="#calculateur" class="footer-link">Calculateur de Festin</a></li>
+                        <li><a href="#maison" class="footer-link">Notre Engagement</a></li>
+                    </ul>
+                </div>
+
+                <div class="reveal from-bottom">
+                    <h4 class="footer-col-title">Informations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Expédition & Livraison</a></li>
+                        <li><a href="#" class="footer-link">Guides de Cuisson</a></li>
+                        <li><a href="#" class="footer-link">Mentions Légales</a></li>
+                        <li><a href="#" class="footer-link">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+
+                <div class="reveal from-bottom">
+                    <h4 class="footer-col-title">Service Clients</h4>
+                    <ul class="footer-links">
+                        <li><span class="footer-link">contact@harvest-feast.fr</span></li>
+                        <li><span class="footer-link">+33 (0)1 42 68 00 00</span></li>
+                        <li><span class="footer-link">Du Lun. au Sam. (9h - 19h)</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 HARVEST & FEAST. Tous droits réservés.</p>
+                <p>Thème d'Excellence Thanksgiving - Strictement 3 Couleurs</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- CART SLIDE-OVER DRAWER -->
+    <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCartDrawer()">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-drawer-header">
+                <h3 class="cart-drawer-title">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--c2)" fill="none" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    Votre Panier d'Automne
+                </h3>
+                <button class="modal-close-btn" style="position: static;" onclick="closeCartDrawer()">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+
+            <div class="cart-free-shipping">
+                <span id="shipping-text">Plus que 150.00 € pour la livraison offerte.</span>
+                <div class="shipping-bar-bg">
+                    <div id="shipping-bar-fill" class="shipping-bar-fill"></div>
+                </div>
+            </div>
+
+            <div id="cart-items-container" class="cart-items-container">
+                <!-- Cart items rendered dynamically -->
+            </div>
+
+            <div class="cart-drawer-footer">
+                <div class="promo-code-box">
+                    <input type="text" id="promo-input" class="promo-input" placeholder="Code promo (ex: THANKSGIVING10)">
+                    <button class="btn-secondary" onclick="applyPromoCode()" style="padding: 0.75rem 1rem; font-size: 0.85rem;">Appliquer</button>
+                </div>
+
+                <div class="cart-total-row">
+                    <span>Sous-total:</span>
+                    <span id="cart-subtotal">0.00 €</span>
+                </div>
+
+                <div id="cart-discount-row" class="cart-total-row" style="display: none; color: var(--c2);">
+                    <span>Réduction:</span>
+                    <span id="cart-discount-val">-0.00 €</span>
+                </div>
+
+                <div class="cart-total-row grand-total">
+                    <span>Total estimé:</span>
+                    <span id="cart-total">0.00 €</span>
+                </div>
+
+                <button class="btn-primary" onclick="openCheckoutModal()" style="width: 100%; margin-top: 1.25rem; justify-content: center;">
+                    Commander mon Festin
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK VIEW MODAL -->
+    <div id="quickview-modal" class="modal-overlay" onclick="closeQuickView()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeQuickView()">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div id="quickview-content"></div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT WIZARD MODAL -->
+    <div id="checkout-modal" class="modal-overlay" onclick="closeCheckoutModal()">
+        <div class="modal-card checkout-modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeCheckoutModal()">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+
+            <h2 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--c3); margin-bottom: 2rem; text-align: center;">Finaliser la Commande</h2>
+
+            <div class="checkout-steps">
+                <div class="checkout-step-item active">
+                    <span class="step-num">1</span> Coordonnées
+                </div>
+                <div class="checkout-step-item active">
+                    <span class="step-num">2</span> Livraison
+                </div>
+                <div class="checkout-step-item active">
+                    <span class="step-num">3</span> Paiement
+                </div>
+            </div>
+
+            <form onsubmit="handleCheckoutSubmit(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Prénom</label>
+                        <input type="text" class="form-input" required placeholder="Jean">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nom</label>
+                        <input type="text" class="form-input" required placeholder="Dupont">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Adresse Email</label>
+                        <input type="email" class="form-input" required placeholder="jean.dupont@example.com">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Adresse de Livraison</label>
+                        <input type="text" class="form-input" required placeholder="15 Rue de la Paix">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Code Postal</label>
+                        <input type="text" class="form-input" required placeholder="75002">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Ville</label>
+                        <input type="text" class="form-input" required placeholder="Paris">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Numéro de Carte Bancaire (Simulation)</label>
+                        <input type="text" class="form-input" required placeholder="4532 •••• •••• 8921">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem; justify-content: center;">
+                    Confirmer et Payer en Toute Sécurité
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ORDER SUCCESS MODAL -->
+    <div id="order-success-modal" class="modal-overlay" onclick="closeOrderSuccessModal()">
+        <div class="modal-card" style="max-width: 500px; padding: 3rem; text-align: center;" onclick="event.stopPropagation()">
+            <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(217,119,54,0.15); border: 2px solid var(--c2); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+                <svg viewBox="0 0 24 24" width="36" height="36" stroke="var(--c2)" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--c3); margin-bottom: 0.5rem;">Commande Confirmée !</h2>
+            <p style="color: rgba(245,235,230,0.8); font-size: 0.95rem; margin-bottom: 1.5rem;">Merci pour votre confiance. Votre festin de Thanksgiving est en cours de préparation par nos maîtres artisans.</p>
+
+            <div style="background: rgba(217,119,54,0.08); border: 1px solid rgba(217,119,54,0.3); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 2rem;">
+                <span style="font-size: 0.8rem; color: rgba(245,235,230,0.6); display: block;">Numéro de suivi de commande</span>
+                <strong id="order-success-id" style="font-size: 1.2rem; color: var(--c2); letter-spacing: 1px;">THX-849201</strong>
+            </div>
+
+            <button class="btn-primary" onclick="closeOrderSuccessModal()" style="width: 100%; justify-content: center;">
+                Retour au Magasin
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING BACK TO TOP BUTTON -->
+    <button id="back-to-top-btn" class="back-to-top-btn" aria-label="Retour en haut de page">
+        <svg viewBox="0 0 24 24" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </button>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
